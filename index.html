@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="c03cee45d4.js" crossorigin="anonymous"></script>
+  <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <title>TeslaShare | Earn on the go...</title>
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+        * {
+            font-size: 12px;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo img {
+            width: 40px;
+            border-radius: 100px;
+            border: 2px solid #f95f5f36;
+        }
+        .signup {
+            display: flex;
+            align-items: center;
+        }
+        .signup span {
+            padding: 10px;
+            margin-right: 10px;
+            color: #fff;
+            border-radius: 25px;
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+            cursor: pointer;
+            border: 1px solid #B71C1C;
+        }
+        .menu-icon {
+            padding: 10px;
+            color: #333;
+            border-radius: 25px;
+            background: linear-gradient(to right, #dedddd, #fff);
+            cursor: pointer;
+        }
+        .content {
+            text-align: center;
+            padding: 20px;
+        }
+        .menu {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: #f5f5f5;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .menu-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .content h1 {
+            font-weight: bold;
+        }
+        #content-h1 {
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .menu .fa-solid {
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .main {
+            margin: 10px;
+            text-align: center;
+        }
+        .main img {
+            width: 100%;
+            max-width: 300px;
+            animation: animateImage 5s infinite alternate;
+        }
+        @keyframes animateImage {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+        .main span {
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btnm {
+            display: flex;
+            justify-content: center;
+            margin: 10px auto;
+        }
+        .btnm button {
+            margin: 10px;
+            outline: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #B71C1C;
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+        }
+        .section {
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .section p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .section img {
+            width: 200px;
+            max-width: 300px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .section .reward {
+            color: #B71C1C;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .section .cta-button {
+            display: inline-block;
+            background-color: #B71C1C;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .section .cta-button:hover {
+            background-color: #942020;
+        }
+        .last {
+            color: #fff;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+        }
+        .cee {
+            display: flex;
+            justify-content: center;
+            margin: 10px auto;
+        }
+        .cee button {
+            margin: 10px;
+            outline: none;
+            color: #fff;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid #B71C1C;
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+        }
+        footer {
+            text-align: center;
+            color: #333;
+        }
+        .ce {
+            margin: 10px;
+            padding: 20px;
+            color: #666;
+            text-align: center;
+        }
+        .ce img {
+            width: 100%;
+        }
+        .ce h3 {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .ce b {
+            font-size: 16px;
+            text-decoration: underline;
+        }
+        @keyframes dropAndShrink {
+        0% {
+            transform: translateY(-100%) scale(1);
+        }
+        50% {
+            transform: translateY(0) scale(0.8);
+        }
+        100% {
+            transform: translateY(0) scale(1);
+        }
+        }
+        .withdraw-popup {
+            display: none;
+            position: fixed;
+            top: 35px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background: linear-gradient(to right, #B71C1C, #f95f5f36);
+            color: #fff;
+            border-radius: 10px;
+            z-index: 999;
+            width: 98%;
+            font-size: 14px;
+            border: 1px solid #f95f5f36;
+            animation: dropAndShrink 0.5s ease-in-out;
+        }
+        .wa {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo"><img src="tesla.svg" alt="" srcset=""></div>
+    <div class="signup">
+      <span onclick="location.href='sign.html'">Sign Up</span>
+      <div class="menu-icon" onclick="toggleMenu()">
+        ☰
+      </div>
+    </div>
+  </div>
+  <div class="wa">
+    <div id="withdrawPopup" class="withdraw-popup"></div>
+  </div>
+  <div class="menu" id="menu">
+    <div class="menu-item" onclick="location.href='index.html'">
+      Home
+    </div>
+    <div class="menu-item" onclick="location.href='go:about'">
+      About Us
+    </div>
+    <div class="menu-item" onclick="location.href='go:faq'">
+      Users FAQ
+    </div>
+    <div class="menu-item" onclick="location.href='go:enquires'">
+      How it works
+    </div>
+  </div>
+  <div class="content">
+    <p>$10.00 in Rewards!</p>
+    <h1>Do Tasks</h1>
+    <h1 id="content-h1">Get Paid.</h1>
+  </div>
+  <div class="main">
+    <p>99.9% of <span>registered</span> users participate,<br>
+    earn & withdraw daily on <span>TeslaShare</span></p>
+    <p>Anyone can participate, no requirements!</p>
+    <div class="btnm">
+      <button onclick="location.href ='sign.html'">Sign Up</button>
+      <button onclick="myFunction()">Sign In </button>
+    </div>
+    <img src="3d-cartoon-design-illustration-of-digital-wallet-and-mobile-banking-application-online-payments-transfer-and-saving-money-concept-png.png" alt="" srcset="">
+    <hr>
+  </div>
+  <div class="section">
+    <h3>Start Earning Right Now!</h3>
+    <p>TeslaShare helps you make money online with social media.</p>
+    <img src="3d-illustration-of-earning-money-from-the-internet-making-money-with-a-laptop-equipped-with-cartoon-characters-3d-rendering-illustration-png.png" alt="" srcset="">
+    <h3>Create An Account</h3>
+    <p>Sign Up for a TeslaShare account (by purchasing your Package ID) and get a $10.00 reward instantly. Select your payment prefrences and provide basic contact info.</p>
+  </div>
+  <div class="section">
+    <img src="online-saving-money-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--mobile-savings-currency-payment-pack-business-illustrations-4773612.png" alt="" srcset="">
+    <h3>Click, Participate & Earn</h3>
+    <p>You'll click, participate/engage (watch video ads [if available]) and earn massively.</p>
+  </div>
+  <div class="section">
+    <img src="3d-cartoon-design-illustration-of-delivery-airplane-shipping-parcel-boxes-global-shopping-and-delivery-online-service-concept-png.png" alt="" srcset="">
+    <h3>Receive Your Payment!</h3>
+    <p>You get paid promptly! Your payment is sent on the same day you cash out. We support various payment methods including PayPal, Cash App, Venmo, and more.</p>
+    <hr>
+  </div>
+  <div class="last">
+    <h3>Are online paid surveys/tasks legitimate?</h3>
+    <p>Market research stands as a billion-dollar industry, and rest assured, it's entirely legitimate! When companies embark on developing new products, apps, games, services, or even TV shows, they seek insights from individuals like you. You are the target consumer they aim to reach, making you the ideal candidate to provide valuable feedback. In exchange for your opinions—expressed through online surveys, game and app testing, and more—they are ready to compensate you. It's a fantastic opportunity for you to earn money online during your leisure time.</p>
+  </div>
+  <div class="cee">
+    <button onclick="location.href ='sign.html'">DON'T WAIT, SIGN UP NOW</button>
+    <hr>
+  </div>
+  <footer>
+    <p>Privacy Policy | Terms & Condition | Trust Policy</p>
+    <p>© TeslaShare 2024</p>
+  </footer>
+  <script src="bootstrap.bundle.min.js" crossorigin="anonymous"></script> 
+  <script>
+    window.onload = function() {
+      Swal.fire({
+        html: '<b>Claim $10.00 in Rewards</b> <br> When you sign up - in less than 1 min!',
+        showCancelButton: true,
+        confirmButtonColor: '#B71C1C',
+        confirmButtonText: 'Sign Up',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'sign.html';
+        }
+      });
+      setInterval(showWithdrawAlert, 10000);
+    };
+
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      if (menu.style.display === "none") {
+        menu.style.display = "block";
+      } else {
+        menu.style.display = "none";
+      }
+    }
+
+    function myFunction() {
+      // Check if user is already logged in
+      if (localStorage.getItem("registrationCompleted")) {
+        // Automatically redirect to dashboard
+        window.location.href = 'board.html';
+      } else {
+        // Show original message for new users
+        Swal.fire({
+          html: '<b>Hmm...</b> <br> No registered account on this device.',
+          showCancelButton: true,
+          confirmButtonColor: '#B71C1C',
+          confirmButtonText: 'Sign Up',
+          cancelButtonText: 'Cancel'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = 'sign.html';
+          }
+        });
+      }
+    }
+
+    function showWithdrawAlert() {
+      const maleNames = ["David", "John", "Michael", "Christopher", "Robert", "William", "Richard", "Thomas", "Abayomi", "Chijioke", "Emeka", "Femi", "Gbenga", "Hassan", "Ibrahim", "Jide", "Kunle", "Lekan", "Musa", "Nnamdi", "Olu", "Peter", "Quadri", "Rasheed", "Segun", "Tunde", "Uche", "Victor", "Yusuf", "Zubair", "Chinedu", "Obinna", "Emeka", "Oluwaseun", "Oluwafemi", "Olumide", "Ayodele", "Adebayo", "Olamide", "Olufemi", "Chukwudi", "Ugochukwu", "Chukwuemeka", "Obioma", "Chigozie", "Nnamdi", "Chinonso", "Oluwasegun", "Olubunmi", "Ayomide", "Kehinde", "Oluwakayode", "Abiodun", "Olawale", "Oladapo", "Oladimeji", "Oluwafunmilayo", "Oluwatobi", "Oluwatosin", "Adewale", "Juma", "Omondi", "Ochieng", "Mwangi", "Kamau", "Kimani", "Nyaga", "Wanjohi", "Waweru", "Karanja", "Odhiambo", "Maina", "Njoroge", "Kibet", "Chege", "Kiplagat", "Mutua", "Muthoni", "Njuguna", "Owino", "Kiprop", "Muthoka", "Karanja", "Kipchoge", "Kamande", "Ndungu", "Wachira", "Mwaura", "Githinji", "Muchiri", "Kwame", "Kwesi", "Kwabena", "Yaw", "Kofi", "Kwaku", "Kwadwo", "Kwasi", "Kojo", "Kwadjo", "Kweku", "Kwabena", "Kweku", "Yaw", "Akua", "Kweku", "Kwame", "Afriyie", "Kwesi", "Ato", "Kwame", "Ato", "Akwasi", "Ato", "Yaw", "Yaw", "Kwesi", "Kwabena", "Kwaku", "Yaw"];
+      const femaleNames = ["Chinwe", "Ngozi", "Omolara", "Oluwakemi", "Oluchi", "Chioma", "Omolola", "Adaeze", "Omotola", "Ololade", "Bisola", "Olajumoke", "Folake", "Temitope", "Ifeoluwa", "Opeyemi", "Modupe", "Omolabake", "Ibukun", "Olayinka", "Funmilayo", "Yetunde", "Olubunmi", "Ayotunde", "Olufunke", "Adeola", "Oluwabukola", "Adetokunbo", "Oluwatoyin", "Oluwatobiloba", "Wambui", "Njeri", "Wanjiru", "Nyambura", "Wairimu", "Nduku", "Mueni", "Nyaguthii", "Ntinyari", "Wanjiku", "Nyambura", "Wanjira", "Njeri", "Nyokabi", "Wambua", "Muthoni", "Nyawira", "Wangechi", "Waithira", "Njoki", "Wamboi", "Wacera", "Mukami", "Wairimu", "Mumbi", "Makena", "Wawira", "Muthoni", "Wamuyu", "Wangui", "Akosua", "Adjoa", "Abena", "Akua", "Yaa", "Afia", "Ama", "Ajoa", "Aba", "Akomah", "Aba", "Abla", "Aba", "Adjoa", "Adwoa", "Aba", "Afia", "Akua", "Akos", "Abena", "Adjoa", "Akua", "Ama", "Abena", "Ajoa", "Afia", "Aba", "Adjoa", "Adwoa", "Afia", "Mary", "Jennifer", "Linda", "Patricia", "Susan", "Karen", "Jessica", "Dorothy", "Amina", "Bisi", "Chinyere", "Dolapo", "Ebere", "Funmi", "Grace", "Helen", "Ifeoma", "Joy", "Khadija", "Lola", "Monica", "Ngozi", "Oluchi", "Patience", "Queen", "Rahmat", "Simisola", "Titi", "Uzoamaka", "Vivian", "Yewande", "Zainab"];
+      const usdAmounts = ["$50.00", "$100.00", "$200.00", "$500.00", "$750.00", "$250.00"];
+      const randomMaleName = maleNames[Math.floor(Math.random() * maleNames.length)];
+      const randomFemaleName = femaleNames[Math.floor(Math.random() * femaleNames.length)];
+      const randomUsdAmount = usdAmounts[Math.floor(Math.random() * usdAmounts.length)];
+      const randomTime = Math.floor(Math.random() * 60);
+      const withdrawPopup = document.getElementById('withdrawPopup');
+      withdrawPopup.textContent = `@${randomMaleName} Withdraw ${randomUsdAmount} ${randomTime}Min Ago`;
+      withdrawPopup.style.display = 'block';
+      setTimeout(() => {
+        withdrawPopup.style.display = 'none';
+      }, 5000);
+      setTimeout(() => {
+        withdrawPopup.textContent = `@${randomFemaleName} Withdraw ${randomUsdAmount} ${randomTime}Min Ago`;
+        withdrawPopup.style.display = 'block';
+      }, 6000);
+    }
+  </script>
+
+</body></html>

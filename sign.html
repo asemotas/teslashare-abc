@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TeslaShare | Earn on the go...</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="js/c03cee45d4.js" crossorigin="anonymous"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+    * { font-size: 12px; font-family: 'Poppins', sans-serif; }
+    body { margin:0; padding:0; background-color:#f8f9fa; }
+    .container { max-width:400px; margin:0 auto; padding-top:50px; }
+    .first { text-align:center; margin-bottom:30px; }
+    .first img { border-radius:50%; margin-bottom:10px; border:3px solid #f95f5f36; }
+    form {
+      margin-bottom:10px;
+      background-color:#fff;
+      padding:20px;
+      border-radius:10px;
+      box-shadow:0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    label { font-weight:bold; margin-bottom:5px; display:block; }
+    input[type="text"], input[type="email"], input[type="tel"], select {
+      width:100%;
+      padding:12px;
+      outline:none;
+      margin-bottom:15px;
+      background-color:#fff;
+      border:1px solid #f95f5f36;
+      border-radius:10px;
+      box-sizing:border-box;
+    }
+    input[type="text"]:hover, input[type="email"]:hover, input[type="tel"]:hover, select:hover {
+      border:1px solid #B71C1C;
+    }
+    button[type="submit"] {
+      width:100%;
+      padding:12px;
+      color:#fff;
+      border-radius:10px;
+      cursor:pointer;
+      border:1px solid #f95f5f36;
+      transition:background-color 0.3s ease;
+      background:linear-gradient(to right, #B71C1C, #f95f5f36);
+    }
+    button[type="submit"]:hover { background:linear-gradient(to right, #B71C1C, #f95f5f36); }
+    .chat-icon {
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      color:#fff;
+      border-radius:50%;
+      width:50px;
+      height:50px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+      box-shadow:0px 0px 10px 0px rgba(0,0,0,0.1);
+      background:linear-gradient(to right, #B71C1C, #f95f5f36);
+    }
+    .menu { display:none; position:fixed; bottom:80px; right:20px; background-color:#f5f5f5; box-shadow:0 2px 4px rgba(0,0,0,0.1); padding:10px; border-radius:5px; }
+    .menu-item { padding:10px; cursor:pointer; }
+    .menu .fa-solid { background:linear-gradient(to right, #B71C1C, #f95f5f36); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .signin-link { text-align:center; margin-top:15px; font-size:0.95rem; }
+    .signin-link a { color:#B71C1C; text-decoration:none; font-weight:500; }
+    .signin-link a:hover { text-decoration:underline; }
+  </style>
+  <script>
+    function validateForm() {
+      var firstname = document.getElementsByName("firstname")[0].value.trim();
+      var lastname  = document.getElementsByName("lastname")[0].value.trim();
+      var username  = document.getElementsByName("username")[0].value.trim();
+      var email     = document.getElementsByName("email")[0].value.trim();
+      var phone     = document.getElementsByName("phone")[0].value.trim();
+
+      if (!firstname || !lastname || !username || !email || !phone) {
+        Swal.fire({
+          title: 'Incomplete Form!',
+          text: 'Please fill in all required fields.',
+          icon: 'warning'
+        });
+        return false;
+      }
+
+      // Basic email check
+      if (!email.includes('@') || !email.includes('.')) {
+        Swal.fire({
+          title: 'Invalid Email',
+          text: 'Please enter a valid email address.',
+          icon: 'error'
+        });
+        return false;
+      }
+
+      localStorage.setItem("username", username);
+      localStorage.setItem("registrationCompleted", "true");
+
+      window.location.href = 'board.html';
+      return false;
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem("registrationCompleted")) {
+        window.location.href = 'board.html';
+      }
+    }
+
+    function toggleMenu() {
+      var menu = document.getElementById("menu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="first">
+      <img width="60" height="60" src="images/tesla.svg" alt="">
+      <h3>TeslaShare</h3>
+    </div>
+
+    <form onsubmit="return validateForm()">
+      <label for="firstname">First Name</label>
+      <input type="text" placeholder="John" name="firstname" required="">
+
+      <label for="lastname">Last Name</label>
+      <input type="text" placeholder="Doe" name="lastname" required="">
+
+      <label for="username">Username</label>
+      <input type="text" placeholder="JohnDoe" name="username" required="">
+
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="youremail@abc.com" required="">
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" name="phone" placeholder="+0 (000) 000-0000" required="">
+
+      <label for="region">Select Region</label>
+      <select name="region" id="">
+        <option value="">Africa</option>
+        <option value="">Asia</option>
+        <option value="">Europe</option>
+        <option value="">North America</option>
+        <option value="">South America</option>
+        <option value="">Oceania</option>
+        <option value="">Other Regions</option>
+      </select>
+
+      <label for="ref">PROMO Code</label>
+      <input type="text" placeholder="JohnDoe-TS (Optional)">
+
+      <label>
+        <input type="checkbox" id="termsCheckbox" required="">
+        I accept TeslaShare Terms and Conditions.
+      </label>
+
+      <button type="submit">Sign Up & Start Earning</button>
+    </form>
+
+    <div class="signin-link">
+      Already have an account? <a href="/signin">Sign in here</a>
+    </div>
+
+    <div class="menu" id="menu">
+      <div class="menu-item" onclick="location.href='index.html'">Home</div>
+      <div class="menu-item" onclick="location.href='go:about'">About Us</div>
+      <div class="menu-item" onclick="location.href='go:faq'">Users FAQ</div>
+      <div class="menu-item" onclick="location.href='go:enquires'">How it works</div>
+    </div>
+  </div>
+
+  <div class="chat-icon" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <script src="js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+</body></html>

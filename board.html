@@ -1,0 +1,558 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <script src="js/32bbba991c.js" crossorigin="anonymous"></script>
+  <title>TeslaShare LLC</title>
+  <style>
+    /* ─── ALL ORIGINAL STYLES UNCHANGED ─── */
+    * {
+      margin: 0 auto;
+      box-sizing: border-box;
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+    .container {
+      margin: 10px auto;
+      max-width: 400px;
+      padding: 10px;
+      background-color: #fff;
+    }
+    .intro {
+      display: flex;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+    .intro img {
+      width: 30px;
+      border-radius: 100%;
+      margin: 0;
+    }
+    .intro h3 {
+      margin: 0;
+      margin-left: 5px;
+    }
+    .dashboard {
+      background-color: #f95f5f36;
+      border-radius: 10px;
+      padding-bottom: 5px;
+    }
+    .dashboard-li {
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      background: linear-gradient(to right, #B71C1C, #f95f5f36);
+    }
+    #bbtn {
+      background-color: #fff;
+      color: #B71C1C;
+      border-radius: 10px;
+      float: right;
+      padding: 5px;
+    }
+    .dashboard-ul {
+      padding: 10px;
+    }
+    #balance {
+      font-size: 24px;
+      font-weight: bolder;
+    }
+    #ngn-balance {
+      font-size: 16px;
+      margin-top: 6px;
+      color: #eee;
+    }
+    .fa-angle-right {
+      float: right;
+    }
+    .news b {
+      color: #B71C1C;
+    }
+    .news {
+      display: flex;
+      align-items: center;
+      background-color: #f95f5f36;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .news p {
+      margin-left: 5px;
+    }
+    .acct {
+      background-color: #f95f5f36;
+      border-radius: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .action {
+      display: flex;
+      padding: 10px;
+    }
+    .action1 img {
+      width: 30px;
+    }
+    .action1 {
+      text-align: center;
+    }
+    .taskes {
+      background-color: #f95f5f36;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+    .task1 {
+      background-color: #f9f9f9;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .task1 img {
+      width: 30px;
+      margin-right: 5px;
+    }
+    .task1 button {
+      color: #fff;
+      border: 1px solid #B71C1C;
+      padding: 8px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: background-color 0.3s ease;
+      background: linear-gradient(to right, #B71C1C, #f95f5f36);
+    }
+    .task1 button:hover {
+      background: linear-gradient(to left, #B71C1C, #f95f5f36);
+    }
+    .task1 button:disabled,
+    .task1 button.locked {
+      background: #555 !important;
+      border-color: #444 !important;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .task1 span {
+      display: flex;
+      align-items: center;
+    }
+    .date {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      color: #B71C1C;
+    }
+    #withdraw-warning {
+      background: #ffebee;
+      color: #c62828;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+      text-align: center;
+      font-weight: bold;
+      display: none;
+    }
+    #endd {
+      text-align: center;
+      color: #afaeae;
+    }
+
+    /* Referral styles */
+    .referral-section {
+      background: #f95f5f36;
+      border-radius: 10px;
+      padding: 14px;
+      margin-top: 14px;
+      color: #fff;
+      text-align: center;
+    }
+    .referral-section h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.1rem;
+    }
+    .referral-link {
+      background: rgba(255,255,255,0.9);
+      color: #B71C1C;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      word-break: break-all;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .referral-stats {
+      margin-top: 10px;
+      font-size: 0.9rem;
+    }
+    .copy-btn {
+      background: #B71C1C;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+    .copy-btn:hover {
+      background: #e53935;
+    }
+
+    /* ─── Withdrawal popup styles (added) ─── */
+    .withdraw-popup {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 12px 18px;
+      background: linear-gradient(to right, #B71C1C, #f95f5f36);
+      color: #fff;
+      border-radius: 10px;
+      z-index: 9999;
+      max-width: 92%;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      border: 1px solid #f95f5f80;
+      animation: dropAndShrink 0.5s ease-in-out;
+    }
+
+    @keyframes dropAndShrink {
+      0%   { transform: translate(-50%, -100%) scale(0.85); opacity: 0; }
+      60%  { transform: translate(-50%, 0) scale(1.03); opacity: 1; }
+      100% { transform: translate(-50%, 0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Added withdrawal popup container -->
+    <div id="withdrawPopup" class="withdraw-popup"></div>
+
+    <div class="intro">
+      <img src="59375f2046d3b594d59039e8ffbf485a.jpg" alt="" srcset="">
+      <h3>Hi, <span id="username"></span></h3>
+    </div>
+
+    <div id="withdraw-warning">
+      Balance has reached $500 or more.<br>Please withdraw your current balance first before doing more tasks.
+    </div>
+
+    <div class="dashboard">
+      <div class="dashboard-li">
+        <p>Available Balance</p>
+        <h3 id="balance">$0.00 <span id="bbtn">-0.01%</span></h3>
+        <div id="ngn-balance">₦0.00</div>
+      </div>
+      <div class="dashboard-ul">
+        <p onclick="location.href ='go:tnx'">Transaction History</p>
+      </div>
+    </div>
+
+    <div class="acct">
+      <div class="action">
+        <div class="action1" onclick="location.href ='go:user'">
+          <img src="external-Transfer-currency-outline-bartama-outline-64-bartama-graphic.png" alt="">
+          <h3>To User</h3>
+        </div>
+        <div class="action1" onclick="location.href ='withdrawal.html'">
+          <img src="external-bank-fintech-itim2101-lineal-itim2101.png" alt="">
+          <h3>To Bank</h3>
+        </div>
+        <div class="action1" onclick="location.href ='go:crypto'">
+          <img src="exchange-money-ethereum.png" alt="">
+          <h3>To Crypto</h3>
+        </div>
+      </div>
+      <div class="action">
+        <div class="action1" onclick="location.href ='go:tnx'">
+          <img src="time-machine--v1.png" alt="">
+          <h3>Activities</h3>
+        </div>
+        <div class="action1" onclick="location.href ='go:enq'">
+          <img src="questions.png" alt="">
+          <h3>Enquires</h3>
+        </div>
+        <div class="action1" onclick="location.href ='go:tg'">
+          <img src="technical-support.png" alt="">
+          <h3>TG. Support</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="news">
+      <img width="48" height="48" src="box-important--v1.png" alt="box-important--v1">
+      <p><b>Bank Conversion Rate:</b> For Nigerians we use a rate of <b>$1 = ₦1,500</b> Other countries are same as market prices, <a href="#">view More</a>.</p>
+    </div>
+
+    <div class="referral-section">
+      <h3>Referral Program</h3>
+      <p>Earn $3 for each friend who joins and completes tasks</p>
+      <div class="referral-link" id="refLink">Loading your link...</div>
+      <div class="referral-stats">
+        <p>Your referrals: <span id="refCount">0</span></p>
+        <p>Earnings from referrals: <span id="refEarnings">$0.00</span></p>
+      </div>
+      <button class="copy-btn" onclick="copyReferralLink()">Copy Referral Link</button>
+    </div>
+
+    <div class="taskes">
+      <h3>Perform Taskes & Earn</h3>
+      <p>You can earn constant daily income by sharing products, engaging, posting adverts of various businesses and top brands on your social media accounts. To get started, simply click on any of the earning options shown below:</p>
+      <div class="date">
+        <h3>Today</h3>
+      </div>
+
+      <!-- Facebook tasks fixed with example links -->
+      <div class="task1" id="task-fbads1" onclick="location.href='https://www.facebook.com/599977956842448/'">
+        <span><img src="facebook-new.png" alt=""> Facebook Page Advert <button id="btn-fbads1">Engage</button></span>
+      </div>
+      <div class="task1" id="task-fbads2" onclick="location.href='https://www.facebook.com/groups/643343580275798'">
+        <span><img src="facebook-new.png" alt=""> Facebook Page Advert <button id="btn-fbads2">Engage</button></span>
+      </div>
+      <div class="task1" onclick="location.href ='#'">
+        <span><img src="facebook-new.png" alt=""> Facebook Page Advert <button>Expired</button></span>
+      </div>
+      <hr>
+
+      <!-- YouTube fixed - button now works same as others -->
+      <div class="task1" onclick="location.href ='https://www.youtube.com/@MFY-TechVerse'">
+        <span><img src="youtube-play.png" alt=""> YouTube Channel Advert <button id="btn-youtube">Engage</button></span>
+      </div>
+      <hr>
+
+      <!-- Affiliate tasks unchanged -->
+      <div class="task1" onclick="location.href ='https://selar.co/1uuv21'">
+        <span><img src="webpage-click.png" alt=""> Affiliate Marketing Advert <button id="btn-aff1">Engage</button></span>
+      </div>
+      <div class="task1" onclick="location.href ='https://promptearn.com/product/TIMB?af=889'">
+        <span><img src="webpage-click.png" alt=""> Affiliate Marketing Advert <button id="btn-aff2">Engage</button></span>
+      </div>
+      <div class="task1" onclick="location.href ='https://promptearn.com/product/profitableleads?af=889'">
+        <span><img src="webpage-click.png" alt=""> Affiliate Marketing Advert <button id="btn-aff3">Engage</button></span>
+      </div>
+      <div class="task1" onclick="location.href ='https://promptearn.com/product/Daily_Cashout_Ebook_Machine?af=889'">
+        <span><img src="webpage-click.png" alt=""> Affiliate Marketing Advert <button id="btn-aff4">Engage</button></span>
+      </div>
+      <hr>
+
+      <!-- Telegram tasks fixed with example real-looking links (replace if needed) -->
+      <div class="task1" id="task-tgads1" onclick="location.href='https://t.me/bettingtipsnigeria'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads1">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads2" onclick="location.href='https://t.me/bet9ja_tips'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads2">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads3" onclick="location.href='https://t.me/memeshubglobal'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads3">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads4" onclick="location.href='https://t.me/naija_sports'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads4">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads5" onclick="location.href='https://t.me/hfmarketnigeria'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads5">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads6" onclick="location.href='https://t.me/binancemafia'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads6">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads7" onclick="location.href='https://t.me/naijafreedatacorner'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads7">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads8" onclick="location.href='https://t.me/ultreosforexfree'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads8">Engage</button></span>
+      </div>
+      <div class="task1" id="task-tgads9" onclick="location.href='https://t.me/crypto_bitcoin_pumps_signal'">
+        <span><img src="telegram-app--v1.png" alt=""> Telegram Channel Advert <button id="btn-tgads9">Engage</button></span>
+      </div>
+      <hr>
+
+      <!-- TikTok fixed with example link -->
+      <div class="task1" id="task-tgads10" onclick="location.href='https://www.tiktok.com/@realpeller'">
+        <span><img src="tiktok--v1.png" alt=""> TikTok Page/Profile Advert <button id="btn-tgads10">Engage</button></span>
+      </div>
+
+      <p id="endd">-- End of Tasks, Check back tomorrow --</p>
+    </div>
+
+    <div class="ref">
+    
+    </div>
+
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    // ─── Elements ────────────────────────────────────────
+    const usernameEl = document.getElementById("username");
+    const balanceEl = document.getElementById("balance");
+    const ngnBalanceEl = document.getElementById("ngn-balance");
+    const rateEl = document.getElementById("bbtn");
+    const warningEl = document.getElementById("withdraw-warning");
+    
+    // ─── Load / Init Data ────────────────────────────────
+    let balance = parseFloat(localStorage.getItem("balance")) || 0;
+    
+    if (!localStorage.getItem("welcomeBonusGiven")) {
+      balance += 10;
+      localStorage.setItem("welcomeBonusGiven", "true");
+      alert("Welcome! You've received $10 sign-up bonus.");
+    }
+    
+    const storedRate = localStorage.getItem("rate") || "-0.01%";
+    rateEl.textContent = storedRate;
+    
+    usernameEl.textContent = localStorage.getItem("username") || "Guest";
+    
+    // ─── Display Functions ───────────────────────────────
+    function updateBalanceDisplay() {
+      balanceEl.textContent = "$" + balance.toFixed(2);
+      ngnBalanceEl.textContent = "₦" + (balance * 1500).toLocaleString("en-NG", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+      localStorage.setItem("balance", balance.toFixed(2));
+      checkHighBalance();
+    }
+    
+    updateBalanceDisplay();
+    
+    // ─── Fake Rate Updater ───────────────────────────────
+    setInterval(() => {
+      let pct = parseFloat(rateEl.textContent.replace("%", ""));
+      const change = Math.random() * 1.8 - 0.9; // -0.9 to +0.9 range
+      pct = Math.max(-0.05, Math.min(1.75, pct + change));
+      rateEl.textContent = pct.toFixed(2) + "%";
+      localStorage.setItem("rate", rateEl.textContent);
+    }, 5000);
+    
+    // ─── High Balance Logic ──────────────────────────────
+    function checkHighBalance() {
+      if (balance >= 500) {
+        warningEl.style.display = "block";
+        // Disable remaining active "Engage" buttons
+        document.querySelectorAll('.task1 button[id^="btn-"]:not(:disabled)').forEach(btn => {
+          if (btn.textContent.trim() === "Engage") {
+            btn.disabled = true;
+            btn.classList.add("locked");
+            btn.textContent = "Withdraw First";
+          }
+        });
+      } else {
+        warningEl.style.display = "none";
+        // Optional: re-enable if balance drops below 500 (rare in this script)
+      }
+    }
+    
+    // ─── Task Buttons Logic ──────────────────────────────
+    document.querySelectorAll('.task1 button[id^="btn-"]').forEach(button => {
+      const taskId = button.id.replace("btn-", "");
+      const key = "task_done_" + taskId;
+      const doneTime = localStorage.getItem(key);
+      
+      if (doneTime) {
+        const elapsed = Date.now() - parseInt(doneTime);
+        if (elapsed < 24 * 60 * 60 * 1000) {
+          button.disabled = true;
+          button.textContent = "Engaged";
+          button.classList.add("locked");
+        } else {
+          localStorage.removeItem(key);
+        }
+      }
+      
+      button.addEventListener("click", () => {
+        if (button.disabled) return;
+        
+        // Open associated link
+        const taskDiv = button.closest(".task1");
+        if (taskDiv.hasAttribute("onclick")) taskDiv.click();
+        
+        // Award earnings if under cap
+        if (balance < 500) {
+          balance += 4;
+          if (balance > 500) balance = 500;
+          updateBalanceDisplay();
+        }
+        
+        // Mark as done
+        localStorage.setItem(key, Date.now().toString());
+        button.textContent = "Engaged";
+        button.disabled = true;
+        button.classList.add("locked");
+      });
+    });
+    
+    checkHighBalance(); // Initial check
+    
+    // ─── 24h Reset Checker ───────────────────────────────
+    setInterval(() => {
+      document.querySelectorAll('.task1 button[id^="btn-"]').forEach(button => {
+        if (button.disabled && button.textContent.trim() === "Engaged") {
+          const taskId = button.id.replace("btn-", "");
+          const key = "task_done_" + taskId;
+          const done = localStorage.getItem(key);
+          
+          if (done && Date.now() - parseInt(done) >= 24 * 60 * 60 * 1000) {
+            localStorage.removeItem(key);
+            button.disabled = false;
+            button.textContent = "Engage";
+            button.classList.remove("locked");
+            // Visual feedback (optional)
+            button.style.background = "linear-gradient(to right, #4CAF50, #66BB6A)";
+            setTimeout(() => button.style.background = "linear-gradient(to right, #B71C1C, #f95f5f36)", 1400);
+          }
+        }
+      });
+    }, 60000);
+    
+    // ─── Referral Link (fake) ────────────────────────────
+    const refLinkEl = document.getElementById("refLink");
+    const username = localStorage.getItem("username") || "Guest";
+    const randomCode = Math.random().toString(36).substring(2, 7).toUpperCase();
+    const refLink = `under maintainance ${username.toUpperCase()}-${randomCode}`;
+    refLinkEl.textContent = refLink;
+    
+    window.copyReferralLink = function() {
+      navigator.clipboard.writeText(refLink).then(() => {
+        alert("Referral link copied!");
+      }).catch(() => alert("Copy failed — copy manually."));
+    };
+    
+    // ─── Fake Withdrawal Popups ──────────────────────────
+    const maleNames = ["David", "John", "Michael", "Abayomi", "Chijioke", "Emeka", "Femi", "Gbenga", "Hassan", "Ibrahim", "Kunle", "Lekan", "Musa", "Nnamdi", "Olu", "Peter", "Segun", "Tunde", "Uche", "Victor", "Yusuf", "Chinedu", "Obinna"];
+    const femaleNames = ["Chinwe", "Ngozi", "Omolara", "Chioma", "Omotola", "Adaeze", "Folake", "Temitope", "Ifeoluwa", "Opeyemi", "Modupe", "Ibukun", "Olayinka", "Funmilayo", "Yetunde"];
+    const amounts = ["$50.00", "$100.00", "$200.00", "$500.00", "$250.00", "$320.00", "$180.00", "$420.00", "$680.00", "$750.00"];
+    
+    function showFakeWithdraw() {
+      const isMale = Math.random() > 0.4;
+      const names = isMale ? maleNames : femaleNames;
+      const name = names[Math.floor(Math.random() * names.length)];
+      const amount = amounts[Math.floor(Math.random() * amounts.length)];
+      const minAgo = Math.floor(Math.random() * 66) + 5;
+      
+      const popup = document.getElementById("withdrawPopup");
+      popup.textContent = `@${name} withdrew ${amount} ${minAgo} min ago`;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 5200);
+    }
+    
+    setTimeout(() => {
+      showFakeWithdraw();
+      setInterval(showFakeWithdraw, 9000 + Math.random() * 8000);
+    }, 6000);
+    
+  });
+</script>
+
+</body></html>

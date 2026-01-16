@@ -1,0 +1,214 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdraw - TeslaShare LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; font-size:13px; }
+    body { background:#f9f9f9; color:#333; min-height:100vh; padding:12px; }
+    .container { max-width:400px; margin:0 auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 3px 14px rgba(0,0,0,0.08); }
+    .header { background:linear-gradient(to right, #B71C1C, #e53935); color:white; padding:18px 16px; text-align:center; }
+    .header h1 { font-size:1.45rem; font-weight:600; margin-bottom:4px; }
+    .header p { font-size:0.9rem; opacity:0.9; }
+    .content { padding:18px 16px; }
+    .balance-card { background:#f95f5f36; border-radius:10px; padding:16px; margin-bottom:20px; text-align:center; border:1px solid #f95f5f55; }
+    .balance-card .usd { font-size:2rem; font-weight:700; color:#B71C1C; margin-bottom:4px; }
+    .balance-card .ngn { font-size:1.05rem; color:#444; }
+    .form-group { margin-bottom:18px; position: relative; }
+    label { display:block; margin-bottom:6px; font-weight:500; color:#444; font-size:0.95rem; }
+    .input-wrapper { position: relative; }
+    .input-wrapper input {
+      width: 100%;
+      padding: 12px 14px 12px 44px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fafafa;
+      height: 44px;
+    }
+    .input-wrapper .dollar-sign {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #555;
+      font-size: 1.25rem;
+      font-weight: 500;
+      pointer-events: none;
+    }
+    input[type="text"], input[type="number"], select { 
+      width:100%; 
+      padding:12px 14px 12px 44px; 
+      border:1px solid #ddd; 
+      border-radius:8px; 
+      font-size:1rem; 
+      background:#fafafa; 
+      height:44px; 
+    }
+    select {
+      padding-left: 14px; /* better for dropdown - no left icon needed */
+    }
+    input:focus, select:focus { outline:none; border-color:#B71C1C88; box-shadow:0 0 0 2px #B71C1C22; }
+    .fee-summary { background:#fff8e1; border:1px solid #ffca2855; border-radius:10px; padding:14px; margin:18px 0; font-size:0.95rem; color:#5d4037; }
+    .fee-summary .receive { color:#2e7d32; font-weight:600; font-size:1.05rem; }
+    .fee-summary .charge { color:#c62828; font-weight:600; }
+    .fee-summary div { margin-bottom:8px; }
+    .fee-summary div:last-child { margin-bottom:0; }
+    #withdrawBtn { width:100%; padding:13px; background:linear-gradient(to right, #B71C1C, #e53935); color:white; border:none; border-radius:10px; font-size:1.05rem; font-weight:600; cursor:pointer; transition:all 0.18s; margin-top:10px; }
+    #withdrawBtn:hover:not(:disabled) { opacity:0.93; transform:translateY(-1px); }
+    #withdrawBtn:disabled { background:#ccc; cursor:not-allowed; }
+    .error-msg { color:#c62828; font-size:0.85rem; margin-top:5px; display:none; }
+    .small-note { font-size:0.82rem; color:#777; text-align:center; margin-top:20px; line-height:1.4; }
+    .small-note b { color:#B71C1C; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>Withdraw Funds</h1>
+      <p>Fast & Secure Payout</p>
+    </div>
+
+    <div class="content">
+
+      <div class="balance-card">
+        <div class="usd" id="usdBalance">$0.00</div>
+        <div class="ngn" id="ngnBalance">₦0</div>
+      </div>
+
+      <div class="form-group">
+        <label>Amount to Withdraw</label>
+        <div class="input-wrapper">
+          <span class="dollar-sign">$</span>
+          <input type="number" id="amountUSD" min="50" max="500" step="1" placeholder="50 – 500">
+        </div>
+        <div class="error-msg" id="amountError">
+          Amount must be between $50–$500 and not exceed your balance.
+        </div>
+      </div>
+
+      <div class="fee-summary" id="feeDisplay" style="display:none;">
+        <div>You will receive: <span class="receive">₦<span id="receiveNGN">0</span></span></div>
+        <div>Withdrawal Charge: <span class="charge">₦<span id="chargeNGN">0</span></span></div>
+      </div>
+
+      <div class="form-group">
+        <label>Account Name</label>
+        <input type="text" id="accName" placeholder="Full name on account">
+      </div>
+
+      <div class="form-group">
+        <label>Account Number</label>
+        <input type="text" id="accNumber" placeholder="Enter account number">
+      </div>
+
+      <div class="form-group">
+        <label>Bank Name</label>
+        <select id="bankName">
+          <option value="" disabled="" selected="">Select your bank</option>
+          <option value="Access Bank">Access Bank</option>
+          <option value="Citibank Nigeria">Citibank Nigeria</option>
+          <option value="Ecobank Nigeria">Ecobank Nigeria</option>
+          <option value="Fidelity Bank">Fidelity Bank</option>
+          <option value="First Bank of Nigeria">First Bank of Nigeria</option>
+          <option value="First City Monument Bank (FCMB)">First City Monument Bank (FCMB)</option>
+          <option value="Globus Bank">Globus Bank</option>
+          <option value="GTBank (Guaranty Trust Bank)">GTBank (Guaranty Trust Bank)</option>
+          <option value="Heritage Bank">Heritage Bank</option>
+          <option value="Keystone Bank">Keystone Bank</option>
+          <option value="Opay">Opay</option>
+          <option value="PalmPay">PalmPay</option>
+          <option value="Polaris Bank">Polaris Bank</option>
+          <option value="Providus Bank">Providus Bank</option>
+          <option value="Stanbic IBTC Bank">Stanbic IBTC Bank</option>
+          <option value="Standard Chartered">Standard Chartered</option>
+          <option value="Sterling Bank">Sterling Bank</option>
+          <option value="Suntrust Bank">Suntrust Bank</option>
+          <option value="Taj Bank">Taj Bank</option>
+          <option value="Union Bank of Nigeria">Union Bank of Nigeria</option>
+          <option value="United Bank for Africa (UBA)">United Bank for Africa (UBA)</option>
+          <option value="Unity Bank">Unity Bank</option>
+          <option value="Wema Bank">Wema Bank</option>
+          <option value="Zenith Bank">Zenith Bank</option>
+          <option value="Other">Other Banks</option>
+        </select>
+      </div>
+
+      <button id="withdrawBtn" disabled="">Proceed to Payment</button>
+
+      <div class="small-note">
+        Exchange rate: <b>$1 = ₦1,500</b><br>
+        Minimum withdrawal: $50 • Maximum per request: $500
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const RATE = 1500;
+    const CHARGE_PER_USD = 260; // ₦260 per $1 withdrawn
+
+    let balance = parseFloat(localStorage.getItem('balance')) || 0;
+
+    document.getElementById('usdBalance').textContent = '$' + balance.toFixed(2);
+    document.getElementById('ngnBalance').textContent =
+      '₦' + (balance * RATE).toLocaleString('en-NG', { minimumFractionDigits: 0 });
+
+    const amountInput   = document.getElementById('amountUSD');
+    const feeDisplay    = document.getElementById('feeDisplay');
+    const receiveNGN    = document.getElementById('receiveNGN');
+    const chargeNGN     = document.getElementById('chargeNGN');
+    const withdrawBtn   = document.getElementById('withdrawBtn');
+    const amountError   = document.getElementById('amountError');
+
+    function updateSummary() {
+      const usd = parseFloat(amountInput.value) || 0;
+      amountError.style.display = 'none';
+
+      if (usd >= 50 && usd <= 500 && usd <= balance && usd > 0) {
+        const receive = usd * RATE;
+        const charge  = usd * CHARGE_PER_USD;
+
+        receiveNGN.textContent = Math.round(receive).toLocaleString('en-NG', { minimumFractionDigits: 0 });
+        chargeNGN.textContent  = Math.round(charge).toLocaleString('en-NG', { minimumFractionDigits: 0 });
+
+        feeDisplay.style.display = 'block';
+        withdrawBtn.disabled = false;
+      } else {
+        feeDisplay.style.display = 'none';
+        withdrawBtn.disabled = true;
+
+        if (usd > 0) amountError.style.display = 'block';
+      }
+    }
+
+    amountInput.addEventListener('input', updateSummary);
+
+    withdrawBtn.addEventListener('click', () => {
+      const usd = parseFloat(amountInput.value);
+      if (usd < 50 || usd > 500 || usd > balance) return;
+
+      const name   = document.getElementById('accName').value.trim();
+      const number = document.getElementById('accNumber').value.trim();
+      const bank   = document.getElementById('bankName').value.trim();
+
+      if (!name || !number || !bank) {
+        alert("Please fill in all account details.");
+        return;
+      }
+
+      const receive = Math.round(usd * RATE);
+      const charge  = Math.round(usd * CHARGE_PER_USD);
+      const totalToPay = receive + charge;
+
+      localStorage.setItem('pendingWithdrawUSD', usd);
+      localStorage.setItem('pendingWithdrawNGN', receive);
+      localStorage.setItem('pendingChargeNGN', charge);
+      localStorage.setItem('pendingTotalToPayNGN', totalToPay);
+
+      window.location.href = `pay.html`;
+    });
+  </script>
+
+</body></html>
